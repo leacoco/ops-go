@@ -45,7 +45,7 @@ func main() {
 }
 
 ```
-############### Another Function Example 
+### Another Function Example 
 
 ```
 package main
@@ -67,7 +67,7 @@ func addListNumbers ( number []float64 ) float64 {
 }
 
 ```
-######### Function to return 2 values 
+### Function to return 2 values 
 
 ```
 package main
@@ -84,7 +84,7 @@ func next2Values(number int) (int, int) {
 }
 
 ```
-######## Another function call undefined number of args
+### Another function call undefined number of args
 ```
 package main
 import "fmt"
