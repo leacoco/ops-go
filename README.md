@@ -4,14 +4,15 @@
 functions in go
 
 ### Defining a Function:
-
+```
 func function_name( [parameter list] ) [return_types] {
+	
 	body of the function
 }
-
+```
 
 example:
-
+```
 func max( num1, num2 int ) int {
 	/* declear a local variable */
 
@@ -43,6 +44,7 @@ func main() {
 	fmt.Printf("Max value = %d\n", result)	
 }
 
+```
 ############### Another Function Example 
 
 package main
@@ -110,6 +112,7 @@ func main() {
 }
 
 func saveDiv(num1,num2 int) int {
+
 	defer func(){
 	fmt.Println(recover())
 	}()   //this will catch the Error when div by 0
