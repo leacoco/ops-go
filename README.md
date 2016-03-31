@@ -47,6 +47,7 @@ func main() {
 ```
 ############### Another Function Example 
 
+```
 package main
 
 import "fmt"
@@ -65,9 +66,10 @@ func addListNumbers ( number []float64 ) float64 {
 	}
 }
 
-
+```
 ######### Function to return 2 values 
 
+```
 package main
 
 import "fmt"
@@ -81,11 +83,12 @@ func next2Values(number int) (int, int) {
 	return number+1, number+2
 }
 
-
+```
 ######## Another function call undefined number of args
-
-
-main () {
+```
+package main
+import "fmt"
+func main () {
 	fmt.Println (subtractNumbers(1,2,3,4,5))
 
 }
@@ -99,9 +102,9 @@ func subtractNumbers(args ... int) int {
 	return finalValue
 }
 
-
+```
 ### catch errors and print out
-
+```
 package main
 import "fmt"
 
@@ -120,7 +123,7 @@ func saveDiv(num1,num2 int) int {
 	solution := num1/num2
 	return solution
 }
-
+```
 End
 
 
