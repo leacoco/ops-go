@@ -167,8 +167,170 @@ func changeXVal(x *int) {
 	*x = 2
 }
 ```
-End
+### Getting started with Struct in Go
 
+```
+package main
+import "fmt"
+
+func main() {
+	rect1 := Rectangle{
+		leftX: 0,
+		topY: 50,
+		height: 10,
+		width: 30
+	}
+	## or rect1 := Rectangle{0,50,10,30}
+
+	fmt.Println("Rectangle is ", rect1.height, " of height")
+//	fmt.Println("Area of Rectangle is", area(&rect1.width, &rect1.height))
+	fmt.Println("Area = ", rect1.area())
+}
+
+type Rectangle struct {
+	leftX float64
+	topY float64
+	height float64
+	width float64
+}
+
+/*
+func area (w, h *float) float {
+	return *w * *h
+}
+*/
+
+func (rect *Rectangle) area () float64 { //define a function area with a reciever (rect *Rectangle)
+	return rect.width * rect.height
+}
+
+```
+
+### Getting started with interfaces in Go
+```
+package main
+import "fmt"
+import "math"
+
+func main() {
+	rect1 := Rectangle{20,30}
+	cir1 := Circle {10.0}
+	fmt.Println("Rectangle Area =", getArea (rect1))
+}
+
+type Shape interface {
+	area() float64
+}
+
+type Rectangle struct {
+	height float64
+	width float64
+}
+
+type Circle struct {
+	radius float64
+}
+
+func ( rec Rectangle ) area() float64 {
+	return rec.height * rec.width
+}
+
+func (cir Circle) area() float64 {
+	return math.Pi * math.Pow(cir.radius, 2)
+}
+
+func getArea(sh Shape) float64 {
+	return sh.area()
+}
+
+## Getting started with Strings
+
+```
+package main
+
+import ("fmt"
+"strings"
+"sort"
+"log"
+"strconv")
+
+func main() {
+	sampString := "Hallo World"
+	fmt.Println(strings.Contains(sampString, "lo"))	//sampString contains lo
+	fmt.Println(strings.Index(sampString, "lo"))
+	fmt.Println(strings.Count(sampString, "l"))
+	fmt.Println(strings.Replace(sampString, "l", "x", 3)) // replace all first 3 'l's with 'x'
+	fmt.Println(strings.Split(sampString, " "))
+
+	listOfLetters := []string{"d","a","f"}
+	sort.Strings(listOfLetters)
+
+	fmt.Println("Sorted Letters = ", listOfLetters)
+
+
+}
+```
+
+## File io
+
+package main
+
+import ( "fmt"
+"os"
+io/util)
+
+func main() {
+	file, err := os.Create(sample.txt)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+	file.WriteString("some text") // write to the file
+
+	file.Close() // close the file
+
+	stream, err := ioutil.ReadFile(sample.txt)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	readString := string(stream)
+
+	fmt.Println(readString)
+}
+
+```
+## Casting
+
+package main
+
+import ("fmt"
+strconv)
+
+func main() {
+	myInt := 10
+	myFloat := 10.5
+	myString := "100"
+
+	// convert int to float
+
+	fmt.Println(float64(myInt))
+
+	 // convert float to int
+
+	fmt.Println(int(myFloat))
+
+	// convert from string to int
+
+	newInt, _ := strconv.ParseInt(myString, 0, 64)
+	fmt.Println(newInt)
+
+	// convert from string to float
+
+	newFloat, _ := strconv.ParseFloat(myString, 64)
+	fmt.Println(newFloat)
+
+}
 
 
 
