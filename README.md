@@ -62,7 +62,7 @@ func main () {
 func addListNumbers ( number []float64 ) float64 {
 	var sum := 0.0
 	for _, val := range number {
-	sum += val
+		sum += val
 	}
 }
 
@@ -117,13 +117,56 @@ func main() {
 func saveDiv(num1,num2 int) int {
 
 	defer func(){
-	fmt.Println(recover())
+		fmt.Println(recover())
 	}()   //this will catch the Error when div by 0
 
 	solution := num1/num2
 	return solution
 }
 ```
+
+### Call to Panic and demo how to catch Error when Panic occures
+
+```
+package main
+import "fmt"
+
+func main() {
+	demPanic()
+}
+
+func demoPanic(){
+	defer func() {
+		fmt.Println(recover())
+	}()
+
+	panic("OPs PANIC")
+}
+
+### Pointers in Go
+
+package main
+import "fmt"
+
+func main () {
+	num := 0
+
+	/*
+	or declare a pointer value with
+	xPtr := new(int)
+	changeXValue(xptr)
+	fmt.Println("Value of xPtr is " *xPtr)
+	*/
+
+	changeXVal(&num)
+	fmt.Println("Value of num :=", num)
+	fmt.Println("Memory value of num :=", &num)
+}
+
+func changeXVal(x *int) {
+	*x = 2
+}
+
 End
 
 
