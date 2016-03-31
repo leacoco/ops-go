@@ -142,9 +142,9 @@ func demoPanic(){
 
 	panic("OPs PANIC")
 }
-
+```
 ### Pointers in Go
-
+```
 package main
 import "fmt"
 
@@ -166,7 +166,7 @@ func main () {
 func changeXVal(x *int) {
 	*x = 2
 }
-
+```
 End
 
 
