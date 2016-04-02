@@ -272,7 +272,7 @@ func main() {
 ```
 
 ## File io
-
+```
 package main
 
 import ( "fmt"
@@ -301,7 +301,7 @@ func main() {
 
 ```
 ## Casting
-
+```
 package main
 
 import ("fmt"
@@ -332,6 +332,114 @@ func main() {
 
 }
 
+```
+
+## Create HTTP request in Go, Webserver
+
+```
+package main
+
+import("fmt"
+"net/http")
+
+func main() {
+	
+	http.HandleFunc("/", handler) // call the handler function anytime you request for / in the URL
+
+	// Now we need to know what port to listen to
+
+	http.ListenAndServe(":8080", nil)
+
+}
+
+// declear the handler function
+
+func handler(w http.ResponseWriter, r *http.Request) {
+
+	fmt.Fprintf(w, "Hi welcome\n") // This will be printed to the client screen	
+} 
 
 
+```
+Now whan you execute the above code, 
+accessing localhost:8080 show print out the result: Hi Welcome
 
+## Another Example
+
+```
+package main
+
+import ("fmt"
+"time")
+
+func main() {
+	for i := 0; i < 10; i++ {
+	go count(i) // call the go routine using the go call
+	}
+
+	time.Sleep(time.Millisecond * 11000)
+}
+
+func count(id int) {
+	for i := 0; i < 10; i++ {
+		fmt.Println(id, ":", i)
+		time.Sleep(time.Millisecond * 1000) // sleep for one second
+	}
+}
+
+```
+
+## channels  to pass Data to go Routines
+
+```
+package main
+import ("fmt"
+"time"
+"strconv")
+
+var articleNum = 0
+var articleName = ""
+
+func bestellung (stringChan chan string) {
+	articleNum++
+	articleName = "Article " + strconv.Itoa(articleNum) // this will convert an int to a string
+
+	fmt.Println("Make bestellung and more Articles")
+
+	stringChan <- articleName
+
+	time.Sleep(time.Millisecond * 10)
+}
+
+func moreBestellung (stringChan chan string) {
+	articleName : <- stringChan
+	
+	fmt.Println("Add new article and send", articleName)
+
+	stringChan <- articleName
+
+	time.Sleep(time.Millisecond * 10)
+}
+
+func addArticles (stringChan chan string ) {
+	articles : <- stringChan
+	fmt.Println("Add article to", artcles, "and send")
+	time.Sleep(time.Millisecond * 10)	
+}
+
+
+func main() {
+	//create a channel to hold a string
+
+	stringChan := make(chan string)
+
+	for i := 0; i < 10; i++ {
+		go bestellung(stringChan) // go routine to create 3 bestellung
+		go moreBestellung(stringChan)
+		go addArticles(stringChan)
+
+		time.Sleep(time.Millisecond * 5000)
+	}
+}
+
+```
